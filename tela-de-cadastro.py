@@ -1,4 +1,6 @@
 
+import re  
+import string  
     
 def obter_informacoes():
     while True:
@@ -14,11 +16,20 @@ def obter_informacoes():
             print ("São apenas 8 dígitos")
 
     while True:
+        
         try:
             idade = int(input("Digite sua idade: "))
+            
+                     
+            if idade > 99 or idade < 0:
+                print ("Você precisa ter apenas 2 dígitos")
+                continue
+            
             break
+            
         except ValueError:
-                print("Preciso de números")
+            print("Preciso de números")
+    
 
     return nome, idade
 
@@ -26,7 +37,7 @@ while True:
     nome, idade = obter_informacoes()
 
     print("Agora confirme")
-    print(f"Seu nome é {nome}, com {idade} anos de atividades no mundo do crime?")
+    print(f"Seu nome é {nome}, com {idade} anos?")
 
     while True:
         confirmacao = input("As informações que tu deu estão corretas? (y/n): ").strip().lower()
@@ -44,12 +55,43 @@ while True:
         break
     elif confirmacao =='n':
         continue
+    
+# cadastro de email 
+
+print("Agora vamos cadastrar seu email")
+
+def validar_email(email):
+    # Expressão regular para validar o formato do email
+    padrao = r'^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$'
+    return re.match(padrao, email)
+
+def cadastrar_email():
+
+
+    while True:
+        email = input("Digite seu email:").strip
+        
+        if not email:
+            print("Precisamos cadastrar seu email")
+            continue
+        
+        if validar_email(email):
+            break
+        
+        else:
+            print("Precisa ser um email válido")
+        
+    return email
+
+email = cadastrar_email()    
+    
+    
 #padrao de solicitação de criação de senha com caracteres especiais, números, letras maiúsculas e minusculas. !123Abcde
 
 print("Agora vamos escolher uma senha")
 
 def criar_senha():
-    import string
+    
 
     while True:
         senha = input("Digite sua senha: ")
@@ -81,7 +123,7 @@ senha = criar_senha()
 
 while True:
         print(f"Posso cadastrar o nome: {nome} e a senha: {senha} ?")
-        confirmacao = input("As informações que tu deu estão corretas? (y/n): ").strip().lower()
+        confirmacao = input("(y/n): ").strip().lower()
 
         if confirmacao == 'y':
             print("Usuário cadastrado com perrengue")
@@ -89,18 +131,16 @@ while True:
         
         elif confirmacao =='n':
             print("O que você digitou de errado?")
-            corrigir = input("Digite se foi o: NOME ou SENHA ").strip().lower()
+            corrigir = str(input("Digite se foi o: NOME, IDADE ou SENHA ").strip().lower())
             
-            if corrigir == 'NOME':
+        if corrigir == str('nome'):
                 nome, idade = obter_informacoes()
-            
-            elif corrigir == 'SENHA':
+        
+        elif corrigir == str('senha'):
                 senha = criar_senha()
                 
-            else:
-                print("Digitou errado, digite NOME ou SENHA")
-        
-        else:
-            print("Por favor, responda apenas 'y' ou 'n'.")
-            continue
+        elif corrigir != 'nome' or 'senha' or 'idade':
+                print("Digitou errado, digite nome, idade ou senha")
+                continue
+
 
