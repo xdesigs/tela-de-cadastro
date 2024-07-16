@@ -10,7 +10,7 @@ def obter_informacoes():
         if len(nome) > 15:
             print("Acha que essa porra é redação?")
 
-        elif len(nome) >= 8:
+        elif len(nome) > 8:
             print ("São apenas 8 dígitos")
 
     while True:
@@ -44,11 +44,9 @@ while True:
         break
     elif confirmacao =='n':
         continue
+#padrao de solicitação de criação de senha com caracteres especiais, números, letras maiúsculas e minusculas. !123Abcde
 
 print("Agora vamos escolher uma senha")
-
-
-#padrao de solicitação de criação de senha com caracteres especiais, números, letras maiúsculas e minusculas. !123Abcde
 
 def criar_senha():
     import string
@@ -75,16 +73,34 @@ def criar_senha():
         if not any(c in string.punctuation for c in senha):
             print("Senha deve conter pelo menos um caractere especial.")
             continue
+        break 
         
-        if senha == (criar_senha):
-            break 
+    return senha
+
+senha = criar_senha()
+
+while True:
+        print(f"Posso cadastrar o nome: {nome} e a senha: {senha} ?")
+        confirmacao = input("As informações que tu deu estão corretas? (y/n): ").strip().lower()
+
+        if confirmacao == 'y':
+            print("Usuário cadastrado com perrengue")
+            break
         
-        return senha
-
-    nome = obter_informacoes
-    senha = criar_senha
-
-    print(f"Posso cadastrar o nome: {nome} e a senha: {senha} ?")
-
-
+        elif confirmacao =='n':
+            print("O que você digitou de errado?")
+            corrigir = input("Digite se foi o: NOME ou SENHA ").strip().lower()
+            
+            if corrigir == 'NOME':
+                nome, idade = obter_informacoes()
+            
+            elif corrigir == 'SENHA':
+                senha = criar_senha()
+                
+            else:
+                print("Digitou errado, digite NOME ou SENHA")
+        
+        else:
+            print("Por favor, responda apenas 'y' ou 'n'.")
+            continue
 
