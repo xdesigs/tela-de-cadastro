@@ -61,6 +61,8 @@ while True:
 print("Agora vamos cadastrar seu email")
 
 def validar_email(email):
+   
+    
     # Expressão regular para validar o formato do email
     padrao = r'^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$'
     return re.match(padrao, email)
@@ -69,7 +71,7 @@ def cadastrar_email():
 
 
     while True:
-        email = input("Digite seu email:").strip
+        email = input("Digite seu email:").strip()
         
         if not email:
             print("Precisamos cadastrar seu email")
@@ -84,7 +86,10 @@ def cadastrar_email():
     return email
 
 email = cadastrar_email()    
-    
+
+print(f"Email: {email} cadastrado com sucesso")  
+
+  
     
 #padrao de solicitação de criação de senha com caracteres especiais, números, letras maiúsculas e minusculas. !123Abcde
 
